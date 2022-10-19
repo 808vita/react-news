@@ -29,6 +29,7 @@ const UserCard = () => {
               minWidth: "100px",
             }}
             className="pe-2"
+            alt=".."
           />
           <div>
             <h6>{userInfo?.nickname}</h6>

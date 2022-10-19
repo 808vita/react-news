@@ -36,7 +36,7 @@ const Header = () => {
         dispatch(verifiedUser());
       }
     }
-  }, [user]);
+  }, [user, dispatch, isAuthenticated]);
   const handleLogout = () => {
     logout();
     dispatch(resetUserAuths());
