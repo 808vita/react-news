@@ -1,4 +1,5 @@
 const express = require("express");
+const articleRoutes = require("./routes/articleRoutes");
 
 const app = express();
 
@@ -10,7 +11,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api", (req, res) => res.status(200).json({ oof: "oof" }));
+// app.use("/api", (req, res) => res.status(200).json({ oof: "oof" }));
+
+app.use("/api/article", articleRoutes);
 
 // data routes - required
 //get list of articles _> public
