@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ArticleList from "./pages/ArticleList";
 import FullArticle from "./pages/FullArticle";
 import NotVerifiedPage from "./pages/NotVerifiedPage";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div>
           <Routes>
             <Route path="/" element={<ArticleList />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="/full-article" element={<FullArticle />} />
             <Route path="/not-verified" element={<NotVerifiedPage />} />
           </Routes>
