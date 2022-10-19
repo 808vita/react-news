@@ -6,12 +6,14 @@ import ArticleList from "./pages/ArticleList";
 import FullArticle from "./pages/FullArticle";
 import NotVerifiedPage from "./pages/NotVerifiedPage";
 import UserProfile from "./pages/UserProfile";
+import ShowNotVerified from "./components/ShowNotVerified";
 
 function App() {
   return (
     <div className="" style={{ padding: "1rem" }}>
       <BrowserRouter>
         <Header />
+        <ShowNotVerified />
         <div>
           <Routes>
             <Route path="/" element={<ArticleList />} />
