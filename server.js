@@ -1,8 +1,8 @@
 const express = require("express");
 const articleRoutes = require("./routes/articleRoutes");
-
+const cors = require("cors");
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 const port = 4000;
 
