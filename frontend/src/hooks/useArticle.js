@@ -1,12 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import {
-  resetSelected,
-  setArticleList,
-  setDetailedArticle,
-  setAuthorInfo,
-} from "../redux/article";
+import { useDispatch } from "react-redux";
+import { setArticleList } from "../redux/article";
 import { getAllArticleList } from "../utils/LoadData";
 const useArticle = () => {
   const dispatch = useDispatch();
@@ -22,6 +17,7 @@ const useArticle = () => {
   useEffect(() => {
     setAllArticleData();
     //set article list on load first time
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

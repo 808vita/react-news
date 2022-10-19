@@ -1,7 +1,8 @@
 //requires protection
 //detailed article
-import React from "react";
+
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import ComponentFullArticle from "../components/ComponentFullArticle";
 
 const title = `Thanks for your kind words’: GigaChad finally responds to the memes`;
@@ -25,7 +26,8 @@ It’s hard to say if Khalimov will continue interacting with the comments and m
 
 const FullArticle = () => {
   const { isVerified, isAuth } = useSelector((state) => state.user);
-
+  const params = useParams();
+  console.log(params);
   if (!isAuth) {
     return (
       <div className="d-flex flex-wrap flex-column align-items-center justify-content-center">
@@ -43,13 +45,14 @@ const FullArticle = () => {
       <div className="d-flex flex-wrap flex-column align-items-center justify-content-center">
         <div
           className="d-flex flex-wrap flex-column align-items-center justify-content-center"
-          style={{ maxWidth: "1000px" }}
+          style={{ maxWidth: "1400px" }}
         >
           <ComponentFullArticle
             title={title}
             image={image}
             author={author}
             content={content}
+            id={params?.id}
           />
         </div>
       </div>

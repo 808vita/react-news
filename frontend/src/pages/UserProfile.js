@@ -20,12 +20,17 @@ const UserProfile = () => {
           strokeWidthSecondary={2}
         />
       ) : (
-        <>
+        <div
+          className="d-flex flex-column flex-wrap align-items-center justify-content-center pe-4 px-4 pt-3 border border-secondary rounded "
+          style={{
+            "--bs-border-opacity": 0.3,
+          }}
+        >
           <h3 className="text-secondary mb-3">Account Info</h3>
           <div className="mb-5">
             <UserCard />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

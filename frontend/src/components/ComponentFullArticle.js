@@ -1,46 +1,74 @@
-import React from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-const ComponentFullArticle = ({ title, image, author, content }) => {
+import { setDetailedArticle } from "../redux/article";
+import { getDetailedArticle } from "../utils/LoadData";
+import AuthorCard from "./AuthorCard";
+
+const ComponentFullArticle = ({ title, image, author, content, id }) => {
+  const dispatch = useDispatch();
+
+  const { selectedArticle, selectedAuthorInfo } = useSelector(
+    (state) => state.article
+  );
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+
+    getDetailedArticle(id, dispatch, setDetailedArticle);
+    console.log(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log(selectedArticle);
+  }, [selectedArticle]);
+
   return (
     <div className="d-flex flex-wrap flex-column align-items-center justify-content-center">
-      <div
-        className="d-flex flex-wrap flex-column align-items-center justify-content-center p-4 border border-secondary rounded"
-        style={{ "--bs-border-opacity": 0.25 }}
-      >
-        <div className="mt-5 p-4 border border-secondary rounded">
-          <img
-            src={require(`../images/${image}.jpg`)}
-            alt={title}
-            style={{
-              minHeight: "300px",
-              minWidth: "300px",
-              maxHeight: "800px",
-              maxWidth: "800px",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-
-        <div>
-          <div className="pt-2 pb-2">
-            <p className="fs-4">{title}</p>
-            <hr />
+      {selectedArticle?.img && (
+        <div
+          className="d-flex flex-wrap flex-column align-items-center justify-content-center p-4 border border-secondary rounded"
+          style={{ "--bs-border-opacity": 0.25 }}
+        >
+          <div className="mt-5 p-4 border border-secondary rounded">
+            <img
+              src={require(`../images/${selectedArticle?.img}.jpg`)}
+              alt={selectedArticle?.title}
+              style={{
+                height: "60vh",
+                width: "60vh",
+                objectFit: "cover",
+              }}
+            />
           </div>
-        </div>
 
-        <div>
           <div>
             <div className="pt-2 pb-2">
-              <p className="fs-5 lh-lg text-center">{content}</p>
+              <p className="fs-4">{selectedArticle?.title}</p>
+              <hr />
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <div className="pt-2 pb-2">
+                <p className="fs-6 lh-lg text-center">
+                  {selectedArticle?.content}
+                </p>
+              </div>
+              <hr />
+            </div>
+          </div>
+          <div>
+            <div className="pt-2 pb-2">
+              <AuthorCard authorId={selectedArticle?.author} />
             </div>
           </div>
         </div>
-        <div>
-          <div className="pt-2 pb-2">
-            <p className="fs-4">Author: {author}</p>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
