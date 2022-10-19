@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuthorInfo } from "../redux/article";
 import { getAuthorInfo } from "../utils/LoadData";
-const userInfo = {
-  img: "author1",
-  name: "chad",
-};
+
 const AuthorCard = ({ authorId }) => {
   const dispatch = useDispatch();
 

@@ -5,12 +5,10 @@ import { setDetailedArticle } from "../redux/article";
 import { getDetailedArticle } from "../utils/LoadData";
 import AuthorCard from "./AuthorCard";
 
-const ComponentFullArticle = ({ title, image, author, content, id }) => {
+const ComponentFullArticle = ({ id }) => {
   const dispatch = useDispatch();
 
-  const { selectedArticle, selectedAuthorInfo } = useSelector(
-    (state) => state.article
-  );
+  const { selectedArticle } = useSelector((state) => state.article);
 
   useEffect(() => {
     if (!id) {
