@@ -1,7 +1,7 @@
 const content = [
   {
     id: "article0",
-    img: "",
+    img: "article0",
     title:
       "Artist Turns Meme-tastic Internet Cats Into Equally as Funny Sculptures",
     content: `Internet cats are a never-ending source of amusement. And for some creatively minded folks, they are actually muses, too. Japanese artist Meetissai creates work inspired by funny felines and other meme-ified animals who rule our social media feeds. Meetissai transforms iconic photos into small sculptures using epoxy putty. But you don't need to be chronically online to enjoy their work. If you recognize the viral images, it adds another level of enjoyment to the creations; but if not, you can still marvel and laugh at the contorted figurines and funny expressions.
@@ -18,7 +18,7 @@ const content = [
   },
   {
     id: "article1",
-    img: "",
+    img: "article1",
     title: "Who is Ollie the Polite Cat and is he photoshopped?",
     content: `Cats and memes go together like bread and butter. Since the famous “I Can Has Cheezburger?” meme arrived on our computer screens over a decade ago, cats have become one of the most popular sources of memetic and exploitable images. 
 
@@ -34,7 +34,7 @@ const content = [
   },
   {
     id: "article2",
-    img: "",
+    img: "article2",
     title: "Thurston Waffles the cat death: Fans mourn meowing meme star",
     content: `"I can't believe I'm even writing this." Internet learns of sudden death of social media sensation Thurston Waffles in heartbreaking tweet
 
@@ -48,7 +48,7 @@ const content = [
   },
   {
     id: "article3",
-    img: "",
+    img: "article3",
     title: `Thanks for your kind words’: GigaChad finally responds to the memes`,
     content: `Yes, he’s a real person. Yes, he’s noticed the “GigaChad” memes and he’s finally opened up about his internet fame
 
@@ -69,7 +69,7 @@ const content = [
   },
   {
     id: "article4",
-    img: "",
+    img: "article4",
     title: "Your kids are into Big Floppa",
     content: `The Big Floppa meme and the fourth season of Stranger Things were the trendiest online searches of the last three months, according to a new study.
 
@@ -91,13 +91,13 @@ const content = [
 const contentAuthor = {
   author1: {
     name: "Giga Floppa",
-    img: "",
+    img: "author1",
     content:
       "Gives question papers to teachers.Trains the gym trainer.And more Giga Chad stuff that only Giga Chad could do",
   },
   author2: {
     name: "Smudge the cat",
-    img: "",
+    img: "author2",
     content:
       "Never backs down from asking questions and stating riduculous stuff. Likes being yelled at while eating food.",
   },
