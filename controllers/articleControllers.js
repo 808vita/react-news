@@ -1,6 +1,12 @@
+const _ = require("lodash");
+const { content, contentAuthor } = require("../data");
+
 const getArticles = async (req, res) => {
   // send back list of articles
-  // only img, title with maybe shortend content & author
+  // only id,img, title & author
+  // _.omit(item, ["content"]);
+  const articles = content.map((o) => _.omit(o, ["content"]));
+  res.status(200).json(articles);
 };
 
 const getFullArticle = async (req, res) => {
@@ -8,25 +14,29 @@ const getFullArticle = async (req, res) => {
 
   const { id } = req.params;
 
-  // if (check if the current article id exists ) {
-  // 	 res.status(404).json({ error: "no such record" });
-  //   return
-  // }
+  const checkArticleId = _.find(content, { id });
+  // check if the current article id exists
 
-  res.status(200).json(bid);
+  if (!checkArticleId) {
+    res.status(404).json({ error: "no such record" });
+    return;
+  }
+
+  res.status(200).json(checkArticleId);
 };
 
 const getAuthorDetails = async (req, res) => {
   //send back one author details
 
   const { name } = req.params;
+  const checkAuthorId = contentAuthor[name];
 
-  // if (check if the current author name exists ) {
-  // 	 res.status(404).json({ error: "no such record" });
-  //   return
-  // }
+  if (!checkAuthorId) {
+    res.status(404).json({ error: "no such record" });
+    return;
+  }
 
-  res.status(200).json(bid);
+  res.status(200).json(checkAuthorId);
 };
 
 module.exports = {

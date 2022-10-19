@@ -1,4 +1,4 @@
-export const content = [
+const content = [
   {
     id: "article0",
     img: "",
@@ -88,7 +88,7 @@ export const content = [
   },
 ];
 
-export const contentAuthor = {
+const contentAuthor = {
   author1: {
     name: "Giga Floppa",
     img: "",
@@ -101,4 +101,9 @@ export const contentAuthor = {
     content:
       "Never backs down from asking questions and stating riduculous stuff. Likes being yelled at while eating food.",
   },
+};
+
+module.exports = {
+  content,
+  contentAuthor,
 };

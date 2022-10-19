@@ -1,5 +1,11 @@
 const express = require("express");
 
+const {
+  getArticles,
+  getFullArticle,
+  getAuthorDetails,
+} = require("../controllers/articleControllers");
+
 const router = express.Router();
 
 //get all article list
@@ -7,9 +13,9 @@ const router = express.Router();
 router.get("/", getArticles);
 
 //get one full article
-router.get("/:id", getFullArticle);
+router.get("/get/:id", getFullArticle);
 
 //get author details
-router.get("/:name", getAuthorDetails);
+router.get("/author/:name", getAuthorDetails);
 
 module.exports = router;
