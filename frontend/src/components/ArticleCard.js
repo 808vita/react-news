@@ -2,16 +2,25 @@
 //some img
 //title
 //readmore
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getTranslation } from "../utils/LoadData";
 
 const ArticleCard = ({ id, title, image }) => {
   const navigate = useNavigate();
-
+  const { articleLanguage } = useSelector((state) => state.article);
   const handleClick = () => {
     navigate(`/full-article/${id}`);
     console.log(id);
   };
+  const [titleInFrench, setTitleInFrench] = useState("");
+
+  useEffect(() => {
+    if (articleLanguage === "fr" && title) {
+      getTranslation(title, setTitleInFrench);
+    }
+  }, [articleLanguage]);
 
   return (
     <div
@@ -28,7 +37,11 @@ const ArticleCard = ({ id, title, image }) => {
         </div>
         <div className="col-md-6 ">
           <div className="pt-2 pb-2">
-            <p className="fs-5">{title}</p>
+            {titleInFrench && articleLanguage === "fr" ? (
+              <p className="fs-5">{titleInFrench}</p>
+            ) : (
+              <p className="fs-5">{title}</p>
+            )}
           </div>
           <div className="pt-2 pb-2">
             <button

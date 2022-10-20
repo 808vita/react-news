@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuthorInfo } from "../redux/article";
-import { getAuthorInfo } from "../utils/LoadData";
+import { getAuthorInfo, getTranslation } from "../utils/LoadData";
 
 const AuthorCard = ({ authorId }) => {
   const dispatch = useDispatch();
 
-  const { selectedAuthorInfo } = useSelector((state) => state.article);
+  const { selectedAuthorInfo, articleLanguage } = useSelector(
+    (state) => state.article
+  );
+  const [contentInFrench, setContentInFrench] = useState("");
   useEffect(() => {
     if (!authorId) {
       return;
@@ -20,6 +23,15 @@ const AuthorCard = ({ authorId }) => {
   useEffect(() => {
     console.log(selectedAuthorInfo);
   }, [selectedAuthorInfo]);
+
+  useEffect(() => {
+    if (articleLanguage === "fr" && selectedAuthorInfo?.content) {
+      getTranslation(
+        (selectedAuthorInfo?.content).substring(0, 995),
+        setContentInFrench
+      );
+    }
+  }, [articleLanguage]);
 
   return (
     <>
@@ -55,7 +67,13 @@ const AuthorCard = ({ authorId }) => {
             </div>
             <div>
               <p className="fs-5 text-center">{selectedAuthorInfo?.name}</p>
-              <p className="fs-6 text-center">{selectedAuthorInfo?.content}</p>
+              {contentInFrench && articleLanguage === "fr" ? (
+                <p className="fs-5">{contentInFrench}</p>
+              ) : (
+                <p className="fs-6 text-center">
+                  {selectedAuthorInfo?.content}
+                </p>
+              )}
             </div>
           </div>
         </div>

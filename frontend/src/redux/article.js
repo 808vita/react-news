@@ -6,6 +6,7 @@ export const articleSlice = createSlice({
     artilceList: [],
     selectedArticle: {},
     selectedAuthorInfo: {},
+    articleLanguage: "en",
   },
   reducers: {
     resetSelected: (state) => {
@@ -21,6 +22,9 @@ export const articleSlice = createSlice({
     setAuthorInfo: (state, action) => {
       state.selectedAuthorInfo = action.payload;
     },
+    setLanguage: (state, action) => {
+      state.articleLanguage = action.payload;
+    },
   },
 });
 
@@ -29,6 +33,7 @@ export const {
   setArticleList,
   setDetailedArticle,
   setAuthorInfo,
+  setLanguage,
 } = articleSlice.actions;
 
 export default articleSlice.reducer;

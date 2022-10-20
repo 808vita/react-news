@@ -59,3 +59,32 @@ export const getAuthorInfo = async (id, dispatch, setAuthorInfo) => {
     console.log("error", error);
   }
 };
+
+export const getTranslation = async (text, setTitleInFrench) => {
+  console.log(text);
+
+  try {
+    const response = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      body: JSON.stringify({
+        q: text,
+        source: "en",
+        target: "fr",
+        format: "text",
+        api_key: "",
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log(json.error);
+    }
+    if (response.ok) {
+      console.log("oof", json);
+      setTitleInFrench(json.translatedText);
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+};

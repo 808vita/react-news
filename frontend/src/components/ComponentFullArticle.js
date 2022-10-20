@@ -1,15 +1,19 @@
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setDetailedArticle } from "../redux/article";
-import { getDetailedArticle } from "../utils/LoadData";
+import { getDetailedArticle, getTranslation } from "../utils/LoadData";
 import AuthorCard from "./AuthorCard";
 
 const ComponentFullArticle = ({ id }) => {
   const dispatch = useDispatch();
 
-  const { selectedArticle } = useSelector((state) => state.article);
+  const { selectedArticle, articleLanguage } = useSelector(
+    (state) => state.article
+  );
 
+  const [titleInFrench, setTitleInFrench] = useState("");
+  const [contentInFrench, setContentInFrench] = useState("");
   useEffect(() => {
     if (!id) {
       return;
@@ -23,6 +27,20 @@ const ComponentFullArticle = ({ id }) => {
   useEffect(() => {
     console.log(selectedArticle);
   }, [selectedArticle]);
+
+  useEffect(() => {
+    if (
+      articleLanguage === "fr" &&
+      selectedArticle?.title &&
+      selectedArticle?.content
+    ) {
+      getTranslation(selectedArticle?.title, setTitleInFrench);
+      getTranslation(
+        (selectedArticle?.content).substring(0, 995),
+        setContentInFrench
+      );
+    }
+  }, [articleLanguage]);
 
   return (
     <div className="d-flex flex-wrap flex-column align-items-center justify-content-center">
@@ -45,7 +63,11 @@ const ComponentFullArticle = ({ id }) => {
 
           <div>
             <div className="pt-2 pb-2">
-              <p className="fs-4">{selectedArticle?.title}</p>
+              {titleInFrench && articleLanguage === "fr" ? (
+                <p className="fs-5">{titleInFrench}</p>
+              ) : (
+                <p className="fs-4">{selectedArticle?.title}</p>
+              )}
               <hr />
             </div>
           </div>
@@ -53,9 +75,13 @@ const ComponentFullArticle = ({ id }) => {
           <div>
             <div>
               <div className="pt-2 pb-2">
-                <p className="fs-6 lh-lg text-center">
-                  {selectedArticle?.content}
-                </p>
+                {contentInFrench && articleLanguage === "fr" ? (
+                  <p className="fs-5">{contentInFrench}</p>
+                ) : (
+                  <p className="fs-6 lh-lg text-center">
+                    {selectedArticle?.content}
+                  </p>
+                )}
               </div>
               <hr />
             </div>

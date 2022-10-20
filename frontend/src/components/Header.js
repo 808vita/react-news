@@ -9,8 +9,10 @@ import {
 import { Link } from "react-router-dom";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { setLanguage } from "../redux/article";
 const Header = () => {
   const { isAuth } = useSelector((state) => state.user);
+  const { articleLanguage } = useSelector((state) => state.article);
   const dispatch = useDispatch();
   //testing user slice , dispatch and selector
   //modify next round
@@ -41,6 +43,19 @@ const Header = () => {
     logout();
     dispatch(resetUserAuths());
   };
+
+  const handleLangClick = () => {
+    if (articleLanguage === "en") {
+      dispatch(setLanguage("fr"));
+    } else if (articleLanguage === "fr") {
+      dispatch(setLanguage("en"));
+    }
+  };
+
+  useEffect(() => {
+    console.log(articleLanguage);
+  }, [articleLanguage]);
+
   return (
     <div className="container">
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -106,6 +121,14 @@ const Header = () => {
                     <Link to="/profile" className="dropdown-item">
                       Profile
                     </Link>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => handleLangClick()}
+                      className="dropdown-item"
+                    >
+                      Change To: {articleLanguage === "en" ? "FR" : "EN"}
+                    </span>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
