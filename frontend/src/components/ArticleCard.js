@@ -20,6 +20,7 @@ const ArticleCard = ({ id, title, image }) => {
     if (articleLanguage === "fr" && title) {
       getTranslation(title, setTitleInFrench);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [articleLanguage]);
 
   return (

@@ -31,6 +31,7 @@ const AuthorCard = ({ authorId }) => {
         setContentInFrench
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [articleLanguage]);
 
   return (

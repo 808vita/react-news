@@ -1,6 +1,7 @@
 const express = require("express");
 const articleRoutes = require("./routes/articleRoutes");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -15,11 +16,17 @@ app.use((req, res, next) => {
 
 app.use("/api/article", articleRoutes);
 
-// data routes - required
-//get list of articles _> public
-// get detailed article _> requires protection
+// ----------------------------------------------
+const __dirname1 = path.resolve();
 
-// handle for 404
+app.use(express.static(path.join(__dirname1, "/build")));
+
+app.get("*", (req, res) =>
+  // res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  res.sendFile(path.join(__dirname1, "/build/index.html"))
+);
+
+// ----------------------------------------------
 
 app.listen(port, () => {
   console.log(` connected to db & Listening on port ${port}`);
