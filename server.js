@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
